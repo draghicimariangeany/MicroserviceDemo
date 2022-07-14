@@ -44,7 +44,7 @@ steps:
   displayName: 'Publish CustomerApi'
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Visual Studio Professional Subscription'
+    azureSubscription: 'AppServiceSCN'
     appType: 'webAppLinux'
     appName: 'MentorshipGeanyAppService'
     package: '$(Pipeline.Workspace)/**.zip'

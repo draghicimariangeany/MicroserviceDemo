@@ -5,7 +5,7 @@ trigger:
       - master
   paths:
     include:
-      - CustomerApi/*
+      - WebApplication3/*
  
 pool:
   vmImage: 'ubuntu-latest'
@@ -17,31 +17,24 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: '**/CustomerApi*.csproj'
+    projects: 'WebApplication3*.csproj'
   displayName: 'Restore Nuget Packages'
  
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/CustomerApi*.csproj'
+    projects: 'WebApplication3*.csproj'
     arguments: '--no-restore'
   displayName: 'Build projects'
  
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'test'
-    projects: '**/*Test.csproj'
-    arguments: '--no-restore --no-build'
-  displayName: 'Run Tests'
- 
-- task: DotNetCoreCLI@2
-  inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: '**/CustomerApi.csproj'
+    projects: 'WebApplication3.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
     modifyOutputPath: false
-  displayName: 'Publish CustomerApi'
+  displayName: 'Publish WebApplication3'
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'AppServiceGeany'
